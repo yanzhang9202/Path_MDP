@@ -5,6 +5,9 @@
 # ignore objects and archives, anywhere in the tree.
 *_bkup.*
 
+# ignore the bkup folder
+bkup/*
+
 # ignore generated html files,
 #*.html
 
