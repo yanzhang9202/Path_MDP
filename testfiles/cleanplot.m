@@ -12,8 +12,8 @@ ax1.FontSize = 20;
 ax1.LineWidth = 4;
 ax1.DataAspectRatio = [1,1,1];
 % XY limits
-ax1.XLim = [0,5];
-ax1.YLim = [0,5];
+ax1.XLim = limx;
+ax1.YLim = limy;
 % Setting grid positions
 ax2 = axes('Position', ax1.Position, ...
     'XAxisLocation', 'bottom', 'YAxisLocation', 'left', ...

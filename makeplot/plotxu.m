@@ -21,6 +21,8 @@ line([1,1],[0,2],'LineWidth',8, 'Color', 'k')
 line([2,2],[3,5],'LineWidth',8, 'Color', 'k')
 line([3,3],[0,2],'LineWidth',8, 'Color', 'k')
 % axes
+limx = [0,5];
+limy = [0,5];
 cleanplot;
 for tt = 1 : instance.maxH
     text(xu(tt,2)+0.5, xu(tt,1)+0.5, num2str(xu(tt,3)), ...
