@@ -2,19 +2,17 @@
 clear;
 close all;
 clc;
-global verbose
+global verbose use_ref
 % Add current path
 addpath(genpath(pwd));
 
 % Generate problem instance
 gen_instance;
 verbose = 1;
-
-% Generate reference trajectory
-ref = zeros(instance.maxH, 2);  % [u_k, x_{k+1}]_{ref}, k = 0,1,...,maxH.
+use_ref = 0;
 
 % Call solver_mdp function
-[J, pi] = solver_mdp(ref, instance);
+[xu, J, pi] = solver_mdp(ref, instance);
 % J \in R^{n \times n \times maxH}, pi \in R^{n \times n \times maxH},
 % xu \in R^{maxH \times 4}
 

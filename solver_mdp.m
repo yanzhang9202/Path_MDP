@@ -1,4 +1,4 @@
-function [J, pi] = solver_mdp(ref, instance)
+function [xu, J, pi] = solver_mdp(ref, instance)
 % This function solves the motion planning of a MDP model. Using the
 % orignal cost function plus the distance to the reference trajectory as
 % the new cost function, we solve the MDP problem and outputs the optimal
@@ -12,8 +12,8 @@ function [J, pi] = solver_mdp(ref, instance)
 % needs to drive to the goal position.
 %
 % State variable: s = [s1, s2, t], s_i \in {0,1,2,3,4}, t is time.
-% Action set: A(s) = [a1, a2, a3, a4] (indexed by [1,2,3,4])
-%                     up right down left
+% Action set: A(s) = [a1, a2, a3, a4, a5] (indexed by [1,2,3,4, 5])
+%                   up right down left stay
 % Transition: s_{k+1} = T(s_{k}, a_i)
 % Reward function: R(s_{k}, a_i, s_{k+1})
 %   case 1: if not at the goal position, and the action doesn't lead to the
@@ -33,7 +33,6 @@ nAct = instance.nAct;
 gamma = instance.gamma;
 J = zeros(5,5,maxH);    % initialize value function (matrix)
 pi = zeros(5,5,maxH);   % initialize policy function (matrix)
-
 for cnt_itr = 1 : maxIter
     Jinov_max = 0;  % Reset the maximum innovation before every round of value iteration
     for sx = 0 : 4  % Compute the current state value given the current J
@@ -86,5 +85,15 @@ if verbose && Jinov_max > Jeps
        ' iterations!\n']) 
     fprintf(['The maximum innovation at this iteration is ', ...
     num2str(Jinov_max), '.\n'])
+end
+% Generate the trajectory
+xu = zeros(maxH, 3);
+pos = instance.depot(instance.start,:);
+for tt = 1 : maxH
+    xu(tt,1:2) = pos;
+    temp = num2cell([pos+1, tt]);
+    xu(tt,3) = pi(temp{:});
+    s_prime = move([pos, tt], xu(tt,3), instance);
+    pos = s_prime(1:2);
 end
 end
