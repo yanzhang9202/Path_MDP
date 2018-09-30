@@ -2,10 +2,12 @@
 ax1 = gca;
 ax1.XTick = 0.5:4.5;
 ax1.XTickLabelMode = 'manual';
-ax1.XTickLabel = num2cell(string(0:4));
+% ax1.XTickLabel = num2cell(string(0:4));
+ax1.XTickLabel = sprintfc('%d', 0:4);
 ax1.YTick = 0.5:4.5;
 ax1.YTickLabelMode = 'manual';
-ax1.YTickLabel = num2cell(string(0:4));
+% ax1.YTickLabel = num2cell(string(0:4));
+ax1.YTickLabel = sprintfc('%d', 0:4);
 ax1.FontSize = 20;
 ax1.LineWidth = 4;
 ax1.DataAspectRatio = [1,1,1];
