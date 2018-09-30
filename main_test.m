@@ -9,7 +9,7 @@ addpath(genpath(pwd));
 % Generate problem instance
 gen_instance;
 verbose = 1;
-use_ref = 0;
+use_ref = 1;
 
 % Call solver_mdp function
 [xu, J, pi] = solver_mdp(ref, instance);
@@ -17,3 +17,4 @@ use_ref = 0;
 % xu \in R^{maxH \times 4}
 
 % Visualize the value function and trajectory
+plotxu;
