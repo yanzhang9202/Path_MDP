@@ -25,5 +25,7 @@ line([1,1],[0,2],'LineWidth',8, 'Color', 'k')
 line([2,2],[3,5],'LineWidth',8, 'Color', 'k')
 line([3,3],[0,2],'LineWidth',8, 'Color', 'k')
 % axes
+limx = [0,5];
+limy = [0,5];
 cleanplot;
 hold off;
